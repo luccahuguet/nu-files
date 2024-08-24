@@ -75,5 +75,5 @@ $all_paths | each { |path| path add $path }
 # }
 
 # SSH agent configuration
-# ssh-agent -c | lines | first 2 | parse "setenv {name} {value};" | transpose -i -r -d | load-env
-# ssh-add ~/.ssh/id_ed25519 out+err> /dev/null
+ssh-agent -c | lines | first 2 | parse "setenv {name} {value};" | transpose -i -r -d | load-env
+ssh-add ~/.ssh/id_ed25519 out+err> /dev/null
