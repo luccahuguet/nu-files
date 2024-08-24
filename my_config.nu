@@ -7,12 +7,12 @@ alias za = zellij action
 alias zr = zellij run
 alias zp = zellij plugin
 
-source ~/.config/nushell/scripts/mise.nu
-source ~/.config/nushell/scripts/.zoxide.nu
+# source ~/.config/nushell/scripts/mise.nu
+# source ~/.config/nushell/scripts/.zoxide.nu
 source ~/.config/nushell/scripts/on_startup.nu
 
 # use ~/pjs/nu/dynu/dynu.nu
-# use "~/user_installs/nu_scripts/modules/system" *
+use "~/user_installs/nu_scripts/modules/system" *
 # use "~/user_installs/nu_scripts/modules/docker/docker.nu" *
 
 # mkdir ~/.cache/starship
