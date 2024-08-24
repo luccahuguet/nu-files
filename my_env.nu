@@ -18,9 +18,8 @@ $env.GTK_IM_MODULE = "cedilha"
 
 # Custom paths
 let hx_path = "user_installs/helix"
-let alacritty_path = "user_installs/alacritty"
-let pyenv_bin = $"($env.HOME)/.pyenv/bin"
 
+# Helix dependent paths
 $env.EDITOR = $"($env.HOME)/($hx_path)/target/release/hx"
 $env.HELIX_RUNTIME = $"($env.HOME)/($hx_path)/runtime"
 
@@ -40,42 +39,41 @@ let dynamic_paths = [
     $"($env.HOME)/.local/bin",
     $"($env.HOME)/.cargo/env",
     $"($env.HOME)/($hx_path)",
-    $"($env.HOME)/($alacritty_path)/target/release",
     $"($env.JAVA_HOME)/bin",
     $"($env.CUDA_HOME)/bin",
     $env.PNPM_HOME,
-    $pyenv_bin,
     $"($env.MODULAR_HOME)/pkg/packages.modular.com_mojo/bin",
     $env.ANDROID_HOME,
     $"($env.ANDROID_HOME)/emulator",
     $"($env.ANDROID_HOME)/platform-tools",
-    $"($env.BUN_INSTALL)/bin",
-    $"(/home/lucca/.pyenv/bin/pyenv root)/shims"
+    $"($env.BUN_INSTALL)/bin"
+    # $"(/home/lucca/.pyenv/bin/pyenv root)/shims"
 ]
 
-$env.PATH = ($static_paths ++ $dynamic_paths) | each { |path| path add $path }
+let all_paths = $static_paths ++ $dynamic_paths
+$all_paths | each { |path| path add $path }
 
 # CUDA configuration
-let cuda_lib_paths = [
-    "$env.CUDA_HOME/lib64",
-    "$env.CUDA_HOME/targets/x86_64-linux/lib",
-    "$env.CUDA_HOME/extras/CUPTI/lib64"
-] | str join ':'
+# let cuda_lib_paths = [
+#     "$env.CUDA_HOME/lib64",
+#     "$env.CUDA_HOME/targets/x86_64-linux/lib",
+#     "$env.CUDA_HOME/extras/CUPTI/lib64"
+# ] | str join ':'
 
-$env.LD_LIBRARY_PATH = $cuda_lib_paths
+# $env.LD_LIBRARY_PATH = $cuda_lib_paths
 
 # FNM (Fast Node Manager) configuration
-if not (which fnm | is-empty) {
-    ^fnm env --json | from json | load-env
-    let path = if 'Path' in $env { $env.Path } else { $env.PATH }
-    let node_path = if (sys host).name == 'Windows' {
-        $"($env.FNM_MULTISHELL_PATH)"
-    } else {
-        $"($env.FNM_MULTISHELL_PATH)/bin"
-    }
-    $env.PATH = ($path | prepend [$node_path])
-}
+# if not (which fnm | is-empty) {
+#     ^fnm env --json | from json | load-env
+#     let path = if 'Path' in $env { $env.Path } else { $env.PATH }
+#     let node_path = if (sys host).name == 'Windows' {
+#         $"($env.FNM_MULTISHELL_PATH)"
+#     } else {
+#         $"($env.FNM_MULTISHELL_PATH)/bin"
+#     }
+#     $env.PATH = ($path | prepend [$node_path])
+# }
 
 # SSH agent configuration
-ssh-agent -c | lines | first 2 | parse "setenv {name} {value};" | transpose -i -r -d | load-env
-ssh-add ~/.ssh/id_ed25519 out+err> /dev/null
+# ssh-agent -c | lines | first 2 | parse "setenv {name} {value};" | transpose -i -r -d | load-env
+# ssh-add ~/.ssh/id_ed25519 out+err> /dev/null
