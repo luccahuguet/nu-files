@@ -1,4 +1,4 @@
-use "~/pjs/nu/nutask/helper.nu" apply_color
+use ~/.config/nushell/scripts/helper.nu apply_color
 
 def title [str] { (apply_color "yellow" $"\n($str)" ) }
 def sub [str] { (apply_color "yellow" $"- ($str)")}
