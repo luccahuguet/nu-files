@@ -79,3 +79,7 @@ if not (which fnm | is-empty) {
 # SSH agent configuration
 ssh-agent -c | lines | first 2 | parse "setenv {name} {value};" | transpose -i -r -d | load-env
 ssh-add ~/.ssh/id_ed25519 out+err> /dev/null
+
+# Configure starship
+mkdir ~/.cache/starship
+starship init nu | save -f ~/.cache/starship/init.nu

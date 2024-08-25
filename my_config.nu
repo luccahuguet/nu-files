@@ -15,9 +15,8 @@ source ~/.config/nushell/scripts/on_startup.nu
 # use "~/user_installs/nu_scripts/modules/system" *
 # use "~/user_installs/nu_scripts/modules/docker/docker.nu" *
 
-# mkdir ~/.cache/starship
-# starship init nu | save ~/.cache/starship/init.nu -f
-# use ~/.cache/starship/init.nu
+# Configure starship (uses the file generated in env.nu)
+use ~/.cache/starship/init.nu
 
 def nu_usb [] {
     lsusb | 
