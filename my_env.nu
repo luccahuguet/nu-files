@@ -51,7 +51,8 @@ let dynamic_paths = [
 ]
 
 let all_paths = $static_paths ++ $dynamic_paths
-$all_paths | each { |path| path add $path }
+
+$env.PATH = ($env.PATH | split row (char esep) | prepend $all_paths)
 
 # CUDA configuration
 # let cuda_lib_paths = [
