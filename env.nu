@@ -1,8 +1,6 @@
 # Nushell Environment Config File
 #
-# version = "0.94.1"
-
-use std *
+# version = "0.99.0"
 
 def create_left_prompt [] {
     let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
@@ -13,7 +11,7 @@ def create_left_prompt [] {
 
     let path_color = (if (is-admin) { ansi red_bold } else { ansi green_bold })
     let separator_color = (if (is-admin) { ansi light_red_bold } else { ansi light_green_bold })
-    let path_segment = $"($path_color)($dir)"
+    let path_segment = $"($path_color)($dir)(ansi reset)"
 
     $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
 }
@@ -53,7 +51,7 @@ $env.PROMPT_MULTILINE_INDICATOR = {|| "::: " }
 # This can be useful if you have a 2-line prompt and it's taking up a lot of space
 # because every command entered takes up 2 lines instead of 1. You can then uncomment
 # the line below so that previously entered commands show with a single `🚀`.
-$env.TRANSIENT_PROMPT_COMMAND = {|| "❯ " }
+# $env.TRANSIENT_PROMPT_COMMAND = {|| "🚀 " }
 # $env.TRANSIENT_PROMPT_INDICATOR = {|| "" }
 # $env.TRANSIENT_PROMPT_INDICATOR_VI_INSERT = {|| "" }
 # $env.TRANSIENT_PROMPT_INDICATOR_VI_NORMAL = {|| "" }
@@ -79,6 +77,7 @@ $env.ENV_CONVERSIONS = {
 # The default for this is $nu.default-config-dir/scripts
 $env.NU_LIB_DIRS = [
     ($nu.default-config-dir | path join 'scripts') # add <nushell-config-dir>/scripts
+    ($nu.data-dir | path join 'completions') # default home for nushell completions
 ]
 
 # Directories to search for plugin binaries when calling register

@@ -7,8 +7,8 @@ alias za = zellij action
 alias zr = zellij run
 alias zp = zellij plugin
 
-# source ~/.config/nushell/scripts/mise.nu
-# source ~/.config/nushell/scripts/.zoxide.nu
+source ~/.config/nushell/scripts/mise.nu
+source ~/.config/nushell/scripts/.zoxide.nu
 source ~/.config/nushell/scripts/on_startup.nu
 
 # use ~/pjs/nu/dynu/dynu.nu
@@ -48,4 +48,11 @@ def vfetch [] {
     ] 
     
     $versions | to md --pretty | clip
+}
+
+def upcargo [] {
+ cargo install --list
+    | parse "{package} v{version}:"
+    | get package
+    | each {|p| cargo install $p}   
 }
