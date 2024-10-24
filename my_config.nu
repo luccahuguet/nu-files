@@ -11,6 +11,10 @@ source ~/.config/nushell/scripts/mise.nu
 source ~/.config/nushell/scripts/.zoxide.nu
 source ~/.config/nushell/scripts/on_startup.nu
 
+mise use java@temurin-11
+mise use node@16.14.0
+mise use yarn@1.22.19
+
 # use ~/pjs/nu/dynu/dynu.nu
 use "~/user_installs/nu_scripts/modules/system" *
 # use "~/user_installs/nu_scripts/modules/docker/docker.nu" *
@@ -29,6 +33,9 @@ def ght [] {
     $env.GITHUB_API_KEY | clip --silent --no-notify
 }
 
+def ghte [] {
+    $env.GITHUB_TOKEN_ELFO | clip --silent --no-notify
+}
 
 def lscargo [] {
     cargo install --list | lines | where ($it | str starts-with " ") == false | parse "{name} {ver}:"
