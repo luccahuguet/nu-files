@@ -63,3 +63,5 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend $all_paths)
 # ] | str join ':'
 
 # $env.LD_LIBRARY_PATH = $cuda_lib_paths
+
+#
