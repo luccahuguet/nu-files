@@ -4,7 +4,7 @@
 use std *
 
 # Initialize starship prompt
-starship init nu | save -f scripts/init.nu
+starship init nu | save -f ~/.config/nushell/scripts/init.nu
 use scripts/init.nu
 
 # Source all script modules
