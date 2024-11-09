@@ -1,7 +1,8 @@
 
 # Environment variables
 $env.CUDA_HOME = "/usr/lib/cuda-11.2"
-# $env.JAVA_HOME = "/usr/lib/jvm/jdk-11.0.25+9"
+# $env.JAVA_HOME = $"($env.HOME)/.local/share/mise/installs/java/temurin-11"
+# $env.JAVA_HOME = $"($env.HOME)/user_installs/jdk-11.0.25+9"
 $env.PNPM_HOME = $"($env.HOME)/Library/pnpm"
 $env.MODULAR_HOME = $"($env.HOME)/.modular"
 $env.ANDROID_HOME = $"($env.HOME)/Android/Sdk"
@@ -38,7 +39,7 @@ let dynamic_paths = [
     $"($env.HOME)/.local/bin",
     $"($env.HOME)/.cargo/env",
     $"($env.HOME)/.deno/bin",
-    $"($env.HOME)/user_installs/apache-maven/bin",
+    $"($env.HOME)/user_installs/apache-maven-3.9.9/bin",
     $"($env.HOME)/($hx_path)",
     # $"($env.JAVA_HOME)/bin",
     $"($env.CUDA_HOME)/bin",
@@ -64,4 +65,6 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend $all_paths)
 
 # $env.LD_LIBRARY_PATH = $cuda_lib_paths
 
-#
+# Custom Options
+
+$env.NODE_OPTIONS = "--max-old-space-size=8192"
