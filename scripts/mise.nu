@@ -11,15 +11,15 @@ export-env {
 def --env add-hook [field: cell-path new_hook: any] {
   let old_config = $env.config? | default {}
   let old_hooks = $old_config | get $field --ignore-errors | default []
-  $env.config = ($old_config | upsert $field ($old_hooks ++ $new_hook))
+  $env.config = ($old_config | upsert $field ($old_hooks ++ [$new_hook]))
 }
 
 def "parse vars" [] {
-  $in | lines | parse "{op},{name},{value}"
+  $in | from csv --noheaders --no-infer | rename 'op' 'name' 'value'
 }
 
-export def --wrapped main [command?: string, --help, ...rest: string] {
-  let commands = ["shell", "deactivate"]
+export def --env --wrapped main [command?: string, --help, ...rest: string] {
+  let commands = ["deactivate", "shell", "sh"]
 
   if ($command == null) {
     ^"/home/lucca/.cargo/bin/mise"
@@ -37,7 +37,11 @@ export def --wrapped main [command?: string, --help, ...rest: string] {
 def --env "update-env" [] {
   for $var in $in {
     if $var.op == "set" {
-      load-env {($var.name): $var.value}
+      if $var.name == 'PATH' {
+        $env.PATH = ($var.value | split row (char esep))
+      } else {
+        load-env {($var.name): $var.value}
+      }
     } else if $var.op == "hide" {
       hide-env $var.name
     }

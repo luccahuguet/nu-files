@@ -17,5 +17,12 @@ use scripts/ssh.nu *
 use scripts/cargo_utils.nu *
 use scripts/personal_utils.nu *
 
+use scripts/ctx/house.nu *
+use scripts/ctx/me.nu *
+use scripts/ctx/goals.nu *
+
+# use ~/pjs/personal/dynu/dynu.nu
+# use ~/pjs/personal/nutask/task.nu
+
 # Initialize SSH agent on startup
 setup-ssh-agent
