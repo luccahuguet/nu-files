@@ -19,6 +19,7 @@ export def print_yazelix_versions [] {
         [Zoxide (zoxide --version | str trim | split row ' ' | last)]
         [Yazi (yazi --version | str trim | split row ' ' | get 1)]
         [WezTerm (wezterm --version | str trim | split row ' ' | get 1)]
+        [Ghostty (ghostty +version | lines | first | split row ' ' | get 1)]
     ] 
     
     $versions | to md --pretty | clip
