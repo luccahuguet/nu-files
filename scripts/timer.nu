@@ -10,7 +10,10 @@ export def "timer set" [name: string, hours?: float] {
     ensure-timer-dir
     let now = (date now | into int)
     let start_time = if $hours != null { $now - ($hours * 3_600_000_000_000) } else { $now }
-    { name: $name, start: $start_time } | to json | save --raw -f (timer-file)
+    let file = (timer-file)
+    let arr = if ($file | path exists) { open $file | from json } else { [] }
+    let new = ($arr + [{ name: $name, start: $start_time }])
+    $new | to json | save --raw -f $file
     echo $"Timer '($name)' set."
 }
 export def "timer ls" [] {
