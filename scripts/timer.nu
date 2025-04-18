@@ -15,7 +15,7 @@ export def "timer set" [name: string, hours?: float] {
 }
 export def "timer delete" [] {
     let timer_file = (timer-file)
-    if $timer_file | path exists {
+    if ($timer_file | path exists) {
         rm $timer_file
         echo "Timer deleted."
     } else {
