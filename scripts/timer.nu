@@ -28,7 +28,7 @@ export def "timer set" [name: string, hours?: float] {
     let start_time = if $hours != null { $now - ($hours * 3_600_000_000_000) } else { $now }
     let file = (timer-file)
     let arr = if ($file | path exists) { open $file | from json } else { [] }
-    let new = ($arr + [{ name: $name, start: $start_time }])
+    let new = ($arr | append { name: $name, start: $start_time })
     $new | to json | save --raw -f $file
     echo $"Timer '($name)' set."
 }
