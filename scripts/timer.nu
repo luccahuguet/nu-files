@@ -6,8 +6,20 @@ export def ensure-timer-dir [] {
     }
 }
 
+export def migrate-timer-file [] {
+    let file = (timer-file)
+    if ($file | path exists) {
+        let raw = (open $file --raw)
+        if ($raw | str starts-with "{") {
+            let new_raw = $"[${raw}]"
+            echo $new_raw | save --raw -f $file
+        }
+    }
+}
+
 export def "timer set" [name: string, hours?: float] {
     ensure-timer-dir
+    migrate-timer-file
     let now = (date now | into int)
     let start_time = if $hours != null { $now - ($hours * 3_600_000_000_000) } else { $now }
     let file = (timer-file)
@@ -17,6 +29,7 @@ export def "timer set" [name: string, hours?: float] {
     echo $"Timer '($name)' set."
 }
 export def "timer ls" [] {
+    migrate-timer-file
     let timer_file = (timer-file)
     if ($timer_file | path exists) {
         let arr = (open $timer_file | from json)
@@ -40,6 +53,7 @@ export def "timer ls" [] {
 }
 
 export def "timer del" [idx: int] {
+    migrate-timer-file
     let file = (timer-file)
     if not ($file | path exists) {
         echo "No timers to delete."
