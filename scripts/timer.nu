@@ -46,7 +46,7 @@ export def "timer del" [idx: int] {
     } else {
         let arr = (open $file | from json)
         let len = ($arr | length)
-        if ($idx < 0 || $idx >= $len) {
+        if ($idx < 0 or $idx >= $len) {
             echo $"Invalid index: ($idx)."
         } else {
             let before = ($arr | first $idx)
