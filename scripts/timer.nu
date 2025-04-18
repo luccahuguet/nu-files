@@ -87,4 +87,4 @@ export def main [action: string, param1?: string, param2?: float] {
         timer ls
     }
 }
-main
+main ($args.0) ($args.1) ($args.2)
