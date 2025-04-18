@@ -21,6 +21,8 @@ use scripts/ctx/house.nu *
 use scripts/ctx/me.nu *
 use scripts/ctx/goals.nu *
 
+source scripts/timer.nu
+
 # use ~/pjs/personal/dynu/dynu.nu
 # use ~/pjs/personal/nutask/task.nu
 
