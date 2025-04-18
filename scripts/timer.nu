@@ -23,7 +23,7 @@ export def "timer ls" [] {
         if ($arr | length) == 0 {
             echo "No timers set."
         } else {
-            for idx, timer in ($arr | enumerate) {
+            for [idx, timer] in ($arr | enumerate) {
                 let now = (date now | into int)
                 let elapsed_ns = ($now - $timer.start)
                 let total_hours = ($elapsed_ns // 3_600_000_000_000)
