@@ -13,7 +13,7 @@ export def migrate-timer-file [] {
         if ($raw | str starts-with "{") {
             let trimmed = ($raw | str trim)
             let new_raw = $"[$trimmed]"
-            echo $new_raw | save --raw -f $file
+            print $new_raw | save --raw -f $file
         }
     }
 }
