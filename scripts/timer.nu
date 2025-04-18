@@ -76,15 +76,3 @@ export def "timer del" [idx: int] {
     }
 }
 
-export def main [action: string, param1?: string, param2?: float] {
-    if ($action == "set") {
-        timer set $param1 $param2
-    } else if ($action == "ls") {
-        timer ls
-    } else if ($action == "del") {
-        timer del (to-int $param1)
-    } else {
-        timer ls
-    }
-}
-main ($args.0) ($args.1) ($args.2)
