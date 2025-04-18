@@ -9,7 +9,6 @@ $env.ANDROID_HOME = $"($env.HOME)/Android/Sdk"
 $env.ANDROID_SDK_ROOT = $env.ANDROID_HOME
 $env.BUN_INSTALL = $"($env.HOME)/.bun"
 $env.BUN_INSTALL = $"($env.HOME)/.bun"
-$env.HANDLER = "openai"
 $env.LOCAL_FILES_SERVING_ENABLED = 1
 $env.LOCAL_FILES_DOCUMENT_ROOT = $"($env.HOME)/pjs/elfo/python/label_studio_pj"
 $env.LABEL_STUDIO_LOCAL_FILES_SERVING_ENABLED = 1
@@ -68,3 +67,8 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend $all_paths)
 # Custom Options
 
 $env.NODE_OPTIONS = "--max-old-space-size=8192"
+$env.YAZI_CONFIG_HOME = "~/.config/yazelix/yazi"
+
+$env.AIDER_MODEL = "openai/o4-mini"
+# $env.AIDER_MODEL = "openai/o3"
+# $env.AIDER_MODEL = "openai/gpt-4.1"
