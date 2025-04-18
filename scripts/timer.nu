@@ -41,6 +41,6 @@ export def main [action?: string, name?: string, hours?: float] {
         let hours = ($total_hours mod 24)                   # Whole hours (0-23)
         print $"\nTimer '($timer.name)': ($days) days, ($hours) hours elapsed."
     }
+    }
 }
-
 main
