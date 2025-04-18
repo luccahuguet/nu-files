@@ -26,7 +26,7 @@ export def "timer delete" [] {
 export def main [action?: string, name?: string, hours?: float] {
     if ($action == "set") {
         timer set $name $hours
-    } else if $action == "delete" {
+    } else if ($action == "delete") {
         timer delete
     } else {
         let timer_file = (timer-file)
