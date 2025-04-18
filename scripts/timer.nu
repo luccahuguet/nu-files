@@ -13,6 +13,15 @@ export def "timer set" [name: string, hours?: float] {
     { name: $name, start: $start_time } | to json | save --raw -f (timer-file)
     echo $"Timer '($name)' set."
 }
+export def "timer ls" [] {
+    let timer_file = (timer-file)
+    if ($timer_file | path exists) {
+        open $timer_file | from json | to json
+    } else {
+        echo "No timer set yet."
+    }
+}
+
 export def "timer delete" [] {
     let timer_file = (timer-file)
     if ($timer_file | path exists) {
@@ -28,6 +37,8 @@ export def main [action?: string, name?: string, hours?: float] {
         timer set $name $hours
     } else if ($action == "delete") {
         timer delete
+    } else if ($action == "ls") {
+        timer ls
     } else {
         let timer_file = (timer-file)
         if not ($timer_file | path exists) {
