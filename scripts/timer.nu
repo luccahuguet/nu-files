@@ -14,12 +14,7 @@ export def "timer set" [name: string, hours?: float] {
     echo $"Timer '($name)' set."
 }
 export def "timer delete" [] {
-    if ($action == "set") {
-        timer set $name $hours
-    } elif ($action == "delete") {
-        timer delete
-    } else {
-        let timer_file = (timer-file)
+    let timer_file = (timer-file)
     if ($timer_file | path exists) {
         rm $timer_file
         echo "Timer deleted."
