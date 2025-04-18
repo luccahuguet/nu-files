@@ -16,7 +16,13 @@ export def "timer set" [name: string, hours?: float] {
 export def "timer ls" [] {
     let timer_file = (timer-file)
     if ($timer_file | path exists) {
-        open $timer_file | from json | to json
+        let timer = (open $timer_file | from json)
+        let now = (date now | into int)
+        let elapsed_ns = ($now - $timer.start)
+        let total_hours = ($elapsed_ns // 3_600_000_000_000)  # Integer hours
+        let days = ($total_hours // 24)                      # Whole days
+        let hours = ($total_hours mod 24)                   # Whole hours (0-23)
+        print $"Timer '($timer.name)': ($days) days, ($hours) hours elapsed."
     } else {
         echo "No timer set yet."
     }
