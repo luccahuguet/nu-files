@@ -19,7 +19,7 @@ use scripts/personal_utils.nu *
 
 use scripts/ctx/house.nu *
 use scripts/ctx/me.nu *
-use scripts/ctx/goals.nu *
+use scripts/goals.nu
 
 source scripts/timer.nu
 
