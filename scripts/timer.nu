@@ -69,7 +69,7 @@ export def "timer del" [idx: int] {
         } else {
             let before = ($arr | first $idx)
             let after = ($arr | skip ($idx + 1))
-            let new = ($before + $after)
+            let new = (echo $before $after | flatten)
             $new | to json | save --raw -f $file
             echo $"Deleted timer at index ($idx)."
         }
