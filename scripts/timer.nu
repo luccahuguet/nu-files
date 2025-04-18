@@ -11,7 +11,8 @@ export def migrate-timer-file [] {
     if ($file | path exists) {
         let raw = (open $file --raw)
         if ($raw | str starts-with "{") {
-            let new_raw = $"[${raw}]"
+            let trimmed = ($raw | str trim)
+            let new_raw = $"[$trimmed]"
             echo $new_raw | save --raw -f $file
         }
     }
