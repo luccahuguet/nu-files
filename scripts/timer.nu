@@ -41,8 +41,8 @@ export def "timer ls" [] {
             echo "No timers set."
         } else {
             for item in ($arr | enumerate) {
-                let idx = ($item.0)
-                let timer = ($item.1)
+                let idx = ($item.index)
+                let timer = ($item.item)
                 let now = (date now | into int)
                 let elapsed_ns = ($now - $timer.start)
                 let total_hours = ($elapsed_ns // 3_600_000_000_000)
