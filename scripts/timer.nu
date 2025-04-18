@@ -33,11 +33,6 @@ export def "timer delete" [] {
 }
 
 export def main [] {
-    echo "Usage: timer <command>"
-    echo ""
-    echo "Commands:"
-    echo "  set <name> [hours]   Set a new timer with optional offset"
-    echo "  ls                   Show current timer JSON"
-    echo "  delete               Delete the existing timer"
+    help commands timer
 }
 main
