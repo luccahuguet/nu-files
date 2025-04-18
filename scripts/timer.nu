@@ -48,7 +48,7 @@ export def "timer ls" [] {
                 let total_hours = ($elapsed_ns // 3_600_000_000_000)
                 let days = ($total_hours // 24)
                 let hours = ($total_hours mod 24)
-                print $"[$idx] Timer '($timer.name)': ($days) days, ($hours) hours elapsed."
+                print $"[($idx)] Timer '($timer.name)': ($days) days, ($hours) hours elapsed."
             }
         }
     } else {
