@@ -14,12 +14,13 @@ export def print_yazelix_versions [] {
         [OS $"(sys host | get name) (sys host | get os_version)"]
         [DE $"($env.XDG_CURRENT_DESKTOP | default 'Unknown')"]
         [Zellij (zellij --version | str trim | split row ' ' | last)]
-        [Helix (hx --version | str trim)]
+        ["Helix (from source)" (hx --version | str trim)]
         [Nushell (version | get version)]
         [Zoxide (zoxide --version | str trim | split row ' ' | last)]
         [Yazi (yazi --version | str trim | split row ' ' | get 1)]
         [WezTerm (wezterm --version | str trim | split row ' ' | get 1)]
         [Ghostty (ghostty +version | lines | first | split row ' ' | get 1)]
+        ["ya (from yazi-cli)" (ya --version | str trim | split row ' ' | get 1)]
     ] 
     
     $versions | to md --pretty | clip
