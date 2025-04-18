@@ -7,8 +7,11 @@ export def ensure-timer-dir [] {
 }
 
 export def migrate-timer-file [] {
+    ensure-timer-dir
     let file = (timer-file)
-    if ($file | path exists) {
+    if not ($file | path exists) {
+        echo "[]" | save --raw -f $file
+    } else {
         let raw = (open $file --raw)
         if ($raw | str starts-with "{") {
             let trimmed = ($raw | str trim)
