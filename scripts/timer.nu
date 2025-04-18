@@ -32,26 +32,12 @@ export def "timer delete" [] {
     }
 }
 
-export def main [action?: string, name?: string, hours?: float] {
-    if ($action == "set") {
-        timer set $name $hours
-    } else if ($action == "delete") {
-        timer delete
-    } else if ($action == "ls") {
-        timer ls
-    } else {
-        let timer_file = (timer-file)
-        if not ($timer_file | path exists) {
-            echo "No timer set yet."
-        } else {
-            let timer = (open $timer_file | from json)
-            let now = (date now | into int)
-            let elapsed_ns = ($now - $timer.start)
-            let total_hours = ($elapsed_ns // 3_600_000_000_000)  # Integer hours
-            let days = ($total_hours // 24)                      # Whole days
-            let hours = ($total_hours mod 24)                   # Whole hours (0-23)
-            print $"\nTimer '($timer.name)': ($days) days, ($hours) hours elapsed."
-        }
-    }
+export def main [] {
+    echo "Usage: timer <command>"
+    echo ""
+    echo "Commands:"
+    echo "  set <name> [hours]   Set a new timer with optional offset"
+    echo "  ls                   Show current timer JSON"
+    echo "  delete               Delete the existing timer"
 }
 main
