@@ -28,7 +28,7 @@ export def "timer ls" [] {
     }
 }
 
-export def "timer delete" [] {
+export def "timer del" [] {
     let timer_file = (timer-file)
     if ($timer_file | path exists) {
         rm $timer_file
