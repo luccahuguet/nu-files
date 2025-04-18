@@ -16,25 +16,40 @@ export def "timer set" [name: string, hours?: float] {
 export def "timer ls" [] {
     let timer_file = (timer-file)
     if ($timer_file | path exists) {
-        let timer = (open $timer_file | from json)
-        let now = (date now | into int)
-        let elapsed_ns = ($now - $timer.start)
-        let total_hours = ($elapsed_ns // 3_600_000_000_000)  # Integer hours
-        let days = ($total_hours // 24)                      # Whole days
-        let hours = ($total_hours mod 24)                   # Whole hours (0-23)
-        print $"Timer '($timer.name)': ($days) days, ($hours) hours elapsed."
+        let arr = (open $timer_file | from json)
+        if ($arr | length) == 0 {
+            echo "No timers set."
+        } else {
+            for idx, timer in ($arr | enumerate) {
+                let now = (date now | into int)
+                let elapsed_ns = ($now - $timer.start)
+                let total_hours = ($elapsed_ns // 3_600_000_000_000)
+                let days = ($total_hours // 24)
+                let hours = ($total_hours mod 24)
+                print $"[$idx] Timer '($timer.name)': ($days) days, ($hours) hours elapsed."
+            }
+        }
     } else {
         echo "No timer set yet."
     }
 }
 
-export def "timer del" [] {
-    let timer_file = (timer-file)
-    if ($timer_file | path exists) {
-        rm $timer_file
-        echo "Timer deleted."
+export def "timer del" [idx: int] {
+    let file = (timer-file)
+    if not ($file | path exists) {
+        echo "No timers to delete."
     } else {
-        echo "No timer to delete."
+        let arr = (open $file | from json)
+        let len = ($arr | length)
+        if ($idx < 0 || $idx >= $len) {
+            echo $"Invalid index: ($idx)."
+        } else {
+            let before = ($arr | first $idx)
+            let after = ($arr | skip ($idx + 1))
+            let new = ($before + $after)
+            $new | to json | save --raw -f $file
+            echo $"Deleted timer at index ($idx)."
+        }
     }
 }
 
