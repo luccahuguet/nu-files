@@ -17,11 +17,8 @@ use scripts/ssh.nu *
 use scripts/cargo_utils.nu *
 use scripts/personal_utils.nu *
 
-use scripts/house.nu
-use scripts/me.nu
-use scripts/goals.nu
-
 source scripts/timer.nu
+use ~/pjs/nu/dynu/dynu.nu
 
 # use ~/pjs/personal/dynu/dynu.nu
 # use ~/pjs/personal/nutask/task.nu

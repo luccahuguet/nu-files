@@ -69,6 +69,14 @@ $env.PATH = ($env.PATH | split row (char esep) | prepend $all_paths)
 $env.NODE_OPTIONS = "--max-old-space-size=8192"
 $env.YAZI_CONFIG_HOME = "~/.config/yazelix/yazi"
 
-$env.AIDER_MODEL = "openai/o4-mini"
+# $env.AIDER_MODEL = "openai/o4-mini"
 # $env.AIDER_MODEL = "openai/o3"
 # $env.AIDER_MODEL = "openai/gpt-4.1"
+# 
+# $env.AIDER_MODEL = "xai/grok-3-beta"
+# $env.AIDER_MODEL = "xai/grok-3-fast-beta"
+# $env.AIDER_MODEL = "xai/grok-3-fast-latest"
+
+$env.AIDER_MODEL = "xai/grok-3-mini-beta"
+# $env.AIDER_MODEL = "xai/grok-3-mini-fast-beta"
+# $env.AIDER_MODEL = "xai/grok-3-mini-fast-latest"
