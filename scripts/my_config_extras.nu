@@ -1,15 +1,6 @@
-use "~/user_installs/nu_scripts/modules/system" *
 
 # Load secrets
 source $'($nu.default-config-dir)/secrets.nu'
-
-def ght [] {
-    $env.GITHUB_API_KEY | clip --silent --no-notify
-}
-
-def ghte [] {
-    $env.GITHUB_TOKEN_ELFO | clip --silent --no-notify
-}
 
 def set_evoclinica_versions [] {
     mise use java@temurin-11

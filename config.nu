@@ -70,3 +70,6 @@ $env.config.color_config = {
 $env.config.show_banner = false
 
 source my_config.nu
+
+# Source Yazelix Nushell configuration (added by Yazelix)
+source "/home/lucca/.config/yazelix/nushell/config/config.nu"
