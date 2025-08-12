@@ -7,8 +7,6 @@
 # $env.MODULAR_HOME = $"($env.HOME)/.modular"
 # $env.ANDROID_HOME = $"($env.HOME)/Android/Sdk"
 # $env.ANDROID_SDK_ROOT = $env.ANDROID_HOME
-# $env.BUN_INSTALL = $"($env.HOME)/.bun"
-# $env.BUN_INSTALL = $"($env.HOME)/.bun"
 # $env.LOCAL_FILES_SERVING_ENABLED = 1
 # $env.LOCAL_FILES_DOCUMENT_ROOT = $"($env.HOME)/pjs/elfo/python/label_studio_pj"
 # $env.LABEL_STUDIO_LOCAL_FILES_SERVING_ENABLED = 1
@@ -39,6 +37,8 @@ let dynamic_paths = [
     $"($env.HOME)/.cargo/env",
     $"($env.HOME)/.deno/bin",
     $"($env.HOME)/user_installs/apache-maven-3.9.9/bin",
+    # $"($env.HOME)/.nix-profile/bin",
+    $"($env.HOME)/.bun/bin"
     # $"($env.HOME)/($hx_path)",
     # $"($env.JAVA_HOME)/bin",
     # $"($env.CUDA_HOME)/bin",
@@ -47,7 +47,6 @@ let dynamic_paths = [
     # $env.ANDROID_HOME,
     # $"($env.ANDROID_HOME)/emulator",
     # $"($env.ANDROID_HOME)/platform-tools",
-    # $"($env.BUN_INSTALL)/bin"
     # $"(/home/lucca/.pyenv/bin/pyenv root)/shims"
 ]
 

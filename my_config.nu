@@ -10,7 +10,7 @@
 # Source all script modules
 source scripts/my_config_extras.nu
 # source scripts/mise.nu
-# source scripts/aliases.nu
+source scripts/aliases.nu
 # source scripts/.zoxide.nu
 source scripts/print_cool_quote.nu
 # use scripts/ssh.nu *
@@ -25,3 +25,5 @@ source scripts/timer.nu
 
 # Initialize SSH agent on startup
 # setup-ssh-agent
+
+export def tasks [] { open ~/Documents/SpaceFiles/life/tasks.md }
