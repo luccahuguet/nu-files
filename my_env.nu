@@ -39,6 +39,7 @@ let dynamic_paths = [
     $"($env.HOME)/user_installs/apache-maven-3.9.9/bin",
     # $"($env.HOME)/.nix-profile/bin",
     $"($env.HOME)/.bun/bin"
+    $"($env.HOME)/.turso"
     # $"($env.HOME)/($hx_path)",
     # $"($env.JAVA_HOME)/bin",
     # $"($env.CUDA_HOME)/bin",
